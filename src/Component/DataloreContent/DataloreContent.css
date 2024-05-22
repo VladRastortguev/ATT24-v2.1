@@ -1,0 +1,26 @@
+.VR_Datalore_ButtonGroup {
+    display: flex;
+}
+
+.VR_Datalore_ButtonGroup a {
+    text-decoration: none;
+
+    color: black;
+    opacity: 70%;
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    /* font-weight: bold; */
+}
+
+.VR_Datalore_ButtonGroup a:hover {
+    opacity: 90%;
+}
+
+.VR_All_Header_Accordion button {
+    font-weight: bold;
+}
+
+.VR_Accordion_Item button:hover {
+    background-color: whitesmoke;
+}

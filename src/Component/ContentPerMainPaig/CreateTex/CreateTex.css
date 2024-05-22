@@ -1,0 +1,21 @@
+.VR_taskType_FlexLine {
+    display: flex;
+    
+    justify-content: space-between;
+
+    flex-wrap: wrap;
+}
+
+.VR_taskType_type {
+    display: flex;
+    flex-direction: column;
+
+    width: 45%;
+}
+
+.VR_taskType_service {
+    display: flex;
+    flex-direction: column;
+
+    width: 45%;
+}

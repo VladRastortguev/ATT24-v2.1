@@ -1,0 +1,12 @@
+.VR_NowTask {
+    border: 1px solid red;
+
+    height: 70%;
+
+    overflow-y: scroll;
+}
+
+.VR_NowTask_All {
+    border: 1px solid green;
+
+}

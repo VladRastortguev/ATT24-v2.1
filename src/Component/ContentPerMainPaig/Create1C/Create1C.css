@@ -1,0 +1,38 @@
+
+
+.VR_Container_Title {
+    /* max-width: 90%; */
+    /* margin: auto; */
+    text-align: center;
+}
+
+.VR_Podservice_Select {
+    width: 100%;
+    max-width: none;
+}
+
+.VR_Container_Header {
+    max-width: 50%;
+}
+
+/* .VR_Container_Flex {
+    display: flex;
+    justify-content: space-between;
+
+    position: relative;
+} */
+
+/* .VR_Container_Flex_Form {
+    flex-grow: 1;
+}
+
+.VR_RightContent_Main {
+    border: 1px solid black;
+    position: fixed;
+
+    top: 7.7rem;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 75rem;
+} */
