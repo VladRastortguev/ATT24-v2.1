@@ -90,7 +90,7 @@ const LoginContent:FC = () => {
             if (String(res) == '200') { 
                 localStorage.setItem('userEmail', emailReg)
                 
-                await setLocalUsername(email)
+                await setLocalUsername(emailReg)
                 await setLocalCompany()
 
                 navigate('/')
