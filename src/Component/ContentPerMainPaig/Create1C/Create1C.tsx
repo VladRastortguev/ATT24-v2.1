@@ -441,6 +441,7 @@ const Create1C:FC= () => {
                         
                         <Button onClick={() => {
                             setNewTask()
+                            window.location.reload()
                         }} className='mb-5 mt-3 ps-5 pe-5' variant="outline-dark">Создать</Button>      
                     </Form>
 
