@@ -7,7 +7,7 @@ const UserArrowJod:FC<CreaetAccount1cInterface> = ( { InterfaceObj } ) => {
     return (
         <>
             <Form.Group className="mb-3" controlId="ControlSelect3">
-                <Form.Label>Должность сотрудника которому необходима учетная запись:</Form.Label>
+                <Form.Label>Направление сотрудника который нуждается в учетке:</Form.Label>
                 <Form.Select 
                     className='VR_JobArrow' 
                     aria-label="Направление сотрудника который нуждается в учетке:"
