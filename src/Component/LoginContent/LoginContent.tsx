@@ -89,6 +89,10 @@ const LoginContent:FC = () => {
 
             if (String(res) == '200') { 
                 localStorage.setItem('userEmail', emailReg)
+                
+                await setLocalUsername(email)
+                await setLocalCompany()
+
                 navigate('/')
             } else {
                 alert('Неправильный логин или пароль!')
