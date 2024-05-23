@@ -286,12 +286,7 @@ const Create1C:FC= () => {
             ) {
                 alert('Заполните все поля!')
                 return
-            } else {
-                handleSetTaskInfluence('Среднее')
-                handleSetTaskInfluenceDescr('Создание учетки')
-                handleSetTaskUrgency('Средняя')
-                handleSetTaskUrgencyDescr('Создание учетки')
-            }
+            } 
         } else if (
             !taskInfluence.trim()      ||
             !taskInfluenceDescr.trim() ||
@@ -311,9 +306,9 @@ const Create1C:FC= () => {
                 email                 : userEmail,
                 КомпанияЗаказчик      : taskOrganization,
                 ВлияниеЗадачи         : taskInfluence,
-                ВлияниеЗадачиПодробно : taskInfluenceDescr,
+                ВлияниеЗадачиПодробно : `Влияние задачи подробно: ${taskInfluenceDescr}`,
                 Срочность             : taskUrgency,
-                СрочностьПодробно     : taskUrgencyDescr,
+                СрочностьПодробно     : `Срочность задачи подробно: ${taskUrgencyDescr}`,
                 Описание              : taskComment,
 
                 ПользовательУчеткиАА6 : userNameCreate1c,
@@ -323,6 +318,13 @@ const Create1C:FC= () => {
                 НаправлениеУчеткиАА6  : userJobArrowCreate1c
             }
         ]
+
+        if (taskService == 'Создание учетной записи АА6') {
+            taskObj[0].ВлияниеЗадачи = "Среднее"
+            taskObj[0].ВлияниеЗадачиПодробно = "Влияние задачи подробно: Создание новой учетки"
+            taskObj[0].Срочность = "Средняя"
+            taskObj[0].СрочностьПодробно = "Срочность задачи подробно: Создание новой учетки"
+        }
 
         console.log(taskObj);
 

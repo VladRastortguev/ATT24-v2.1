@@ -140,9 +140,9 @@ const CreateTex:FC = () => {
             email                 : userEmail,
             КомпанияЗаказчик      : taskOrganization,
             ВлияниеЗадачи         : taskInfluence,
-            ВлияниеЗадачиПодробно : taskInfluenceDescr,
+            ВлияниеЗадачиПодробно : `Влияние задачи подробно: ${taskInfluenceDescr}`,
             Срочность             : taskUrgency,
-            СрочностьПодробно     : taskUrgencyDescr,
+            СрочностьПодробно     : `Срочность задачи подробно: ${taskUrgencyDescr}`,
             Описание              : taskComment
         }
     ]
