@@ -20,7 +20,8 @@ const SoglPageNotOk:FC = () => {
                     <div className='VR_Modal_Container_sogl_none'>
                         
                         <div className='VR_Modal_Main_sogl_none'>
-                            <h3>Добрый день! К сожалению, Вы отклонили заявку!</h3>
+                            <h3>Добрый день!</h3>
+                            <p>К сожалению, Вы отклонили заявку!</p>
 
                             <div className='VR_Modal_Main_Btn_Block_sogl'>
                                 <Button variant='outline-danger' className='ps-5 pe-5 ms-2' onClick={() => {
