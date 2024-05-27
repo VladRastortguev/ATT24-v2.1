@@ -22,7 +22,8 @@ const SoglPageOk:FC = () => {
                     <div className='VR_Modal_Container_sogl'>
                         
                         <div className='VR_Modal_Main_sogl'>
-                            <h3>Добрый день! Вы успешно согласовали заявку!</h3>
+                            <h3>Добрый день!</h3>
+                            <p>Вы успешно согласовали заявку!</p>
 
                             <div className='VR_Modal_Main_Btn_Block_sogl'>
                                 <Button variant='outline-success' className='ps-5 pe-5 ms-2' onClick={() => {
