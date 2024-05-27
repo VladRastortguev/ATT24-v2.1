@@ -18,9 +18,9 @@ const TaskUrgency:FC<TaskInterface> = ({InterfaceObj}) => {
                 
                 <option></option>
                 <option value='Низкая'>Низкая</option>
-                <option value='Средняя'>Средняя</option>
+                <option value='Средняя'>  </option>
                 <option value='Высокая'>Высокая</option>
-                <option value='Критическая'>Критическая</option>
+                {/* <option value='Критическая'></option> */}
             </Form.Select>
         </Form.Group>
 
