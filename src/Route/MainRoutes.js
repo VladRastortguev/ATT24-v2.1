@@ -3,6 +3,7 @@ import {Routes, Route } from 'react-router-dom'
 import Homepage from '../page/Homepage/Homepage';
 import Loginpage from '../page/Loginpage/Loginpage';
 import Datalore from '../page/Datalore/Datalore';
+import SoglPage from '../page/SoglPage/SoglPage';
 
 
 const MainRoutes = () => {
@@ -10,7 +11,7 @@ const MainRoutes = () => {
         {link: "/", element: <Homepage />, id: 1},
         {link: "/login", element: <Loginpage />, id: 2},
         {link: "/datalore", element: <Datalore />, id: 3},
-        {link: "/", element: <Homepage />, id: 1},
+        {link: "/sogl/:ok", element: <SoglPage />, id: 1},
         {link: "/", element: <Homepage />, id: 1},
         {link: "/", element: <Homepage />, id: 1},
     ];
