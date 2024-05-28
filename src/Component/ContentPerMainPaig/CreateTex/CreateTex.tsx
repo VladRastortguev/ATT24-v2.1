@@ -12,6 +12,8 @@ import AuthService from '../../../services/AuthService'
 
 import '../CreateTex/CreateTex.css'
 import TaskComment from '../PodComponent/TaskComment'
+import ModalEmptyForm from '../../AlertModal/ModalEmptyForm/ModalEmptyForm'
+import ModalSucces from '../../AlertModal/ModalSuccess/ModalSucces'
 
 const CreateTex:FC = () => {
     const [taskType, setTaskType] = useState('')
@@ -27,6 +29,9 @@ const CreateTex:FC = () => {
     const [taskUrgency, setTaskUrgency] = useState('')
     const [taskUrgencyDescr, setTaskUrgencyDescr] = useState('')
     const [taskComment, setTaskComment] = useState('')
+
+    const [modalEmpty, setModalEmpty] = useState(false)
+    const [modalSuccess, setModalSuccess] = useState(false)
 
     const { store } = useContext(Context)
 
@@ -93,6 +98,14 @@ const CreateTex:FC = () => {
         setTaskComment(newState)
     }
 
+    const handleChangeButtonModalEmpty = (newState: boolean) => {
+        setModalEmpty(newState)
+    }
+
+    const handleChangeButtonModalSuccess = (newState: boolean) => {
+        setModalSuccess(newState)
+    }
+
     const InterfaceObj = {
       changeTaskName: handleSetTaskName,
       changeUserName: handleSetUserName,
@@ -114,6 +127,12 @@ const CreateTex:FC = () => {
       taskComment: taskComment
   }
 
+    const InterfaceObjModal = {
+        changeButtonEmpty: handleChangeButtonModalEmpty,
+        changeButtonSuccess: handleChangeButtonModalSuccess
+    }
+
+
   async function setNewTask() {
     if (
         !taskService.trim()        ||
@@ -127,7 +146,7 @@ const CreateTex:FC = () => {
         !taskUrgencyDescr.trim()   ||
         !taskComment.trim()
     ) {
-        alert('Заполните все поля!')
+        setModalEmpty(true)
         return
     }
 
@@ -172,7 +191,7 @@ const CreateTex:FC = () => {
     handleSetTaskUrgencyDescr("")
     handleSetTaskComment("")
 
-    alert("Задача создана!")
+    setModalSuccess(true)
   }
 
   function resetTaskType(tasktype:string) {
@@ -306,6 +325,22 @@ const CreateTex:FC = () => {
                         <TaskInfluence InterfaceObj={InterfaceObj} />   
                         <TaskUrgency InterfaceObj={InterfaceObj} />
                         <TaskComment InterfaceObj={InterfaceObj}/>
+                    
+                        {modalEmpty ? (
+                            <div className='ModalEmpty_HeaderBlock'>
+                                <ModalEmptyForm InterfaceObj={InterfaceObjModal} />
+                            </div>
+                        ) : (
+                            <></>
+                        )}
+
+                        {modalSuccess ? (
+                            <div className='ModalSuccess_headerBlock'>
+                                <ModalSucces InterfaceObj={InterfaceObjModal} />
+                            </div>
+                        ) : (
+                            <></>
+                        )}
 
                     <Button onClick={() => {
                         setNewTask()

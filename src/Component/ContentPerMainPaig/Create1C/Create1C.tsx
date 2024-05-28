@@ -20,6 +20,8 @@ import UserCompanyCreate1c from '../PodComponent/CreateAccount1c/UserCompanyCrea
 import UserEmailCreate1c from '../PodComponent/CreateAccount1c/UserEmailCreate1c'
 import UserJobtitelCreate1c from '../PodComponent/CreateAccount1c/UserJobtitelCreate1c'
 import UserArrowJod from '../PodComponent/CreateAccount1c/UserArrowJod'
+import ModalEmptyForm from '../../AlertModal/ModalEmptyForm/ModalEmptyForm'
+import ModalSucces from '../../AlertModal/ModalSuccess/ModalSucces'
 
 const Create1C:FC= () => {
     const [taskService, setTaskService] = useState('')
@@ -42,6 +44,9 @@ const Create1C:FC= () => {
     const [userEmailCreate1c, setUserEmailCreate1c] = useState('')
     const [userJobtitelCreate1c, setUserJobtitelCreate1c] = useState('')
     const [userJobArrowCreate1c, setUserJobArrowCreate1c] = useState('')
+
+    const [modalEmpty, setModalEmpty] = useState(false)
+    const [modalSuccess, setModalSuccess] = useState(false)
 
     const { store } = useContext(Context)
 
@@ -134,6 +139,15 @@ const Create1C:FC= () => {
     const handleSetUserJobArrow = (newState: string) => {
         setUserJobArrowCreate1c(newState)
     }
+
+
+    const handleChangeButtonModalEmpty = (newState: boolean) => {
+        setModalEmpty(newState)
+    }
+
+    const handleChangeButtonModalSuccess = (newState: boolean) => {
+        setModalSuccess(newState)
+    }
  
     const InterfaceObj = {
         changeTaskName: handleSetTaskName,
@@ -168,6 +182,11 @@ const Create1C:FC= () => {
         userEmail: userEmailCreate1c,
         userJobtitel: userJobtitelCreate1c,
         userJobArrow: userJobArrowCreate1c
+    }
+
+    const InterfaceObjModal = {
+        changeButtonEmpty: handleChangeButtonModalEmpty,
+        changeButtonSuccess: handleChangeButtonModalSuccess
     }
 
     function changeArrowContent(UserArrowJob:string) {
@@ -319,7 +338,7 @@ const Create1C:FC= () => {
             !taskName.trim()           ||            
             !taskComment.trim()
         ) {
-            alert('Заполните все поля!')
+            setModalEmpty(true)
             return
         }
         
@@ -331,7 +350,7 @@ const Create1C:FC= () => {
                 !userJobtitelCreate1c.trim() ||
                 !userJobArrowCreate1c.trim()
             ) {
-                alert('Заполните все поля!')
+                setModalEmpty(true)
                 return
             } 
         } else if (
@@ -340,7 +359,7 @@ const Create1C:FC= () => {
             !taskUrgency.trim()        ||
             !taskUrgencyDescr.trim()
         ) {
-            alert('Заполните все поля!')
+            setModalEmpty(true)
             return
         }
 
@@ -373,7 +392,7 @@ const Create1C:FC= () => {
             taskObj[0].СрочностьПодробно = "Срочность задачи подробно: Создание новой учетки"
         }
 
-        console.log(taskObj);
+        // console.log(taskObj);
 
         try {
             store.setLoading(true)
@@ -387,7 +406,7 @@ const Create1C:FC= () => {
             store.setLoading(false)
         }
 
-        alert("Задача создана!")
+        setModalSuccess(true)
 
         setTaskService("")
 
@@ -532,10 +551,26 @@ const Create1C:FC= () => {
 
 
                         <TaskComment InterfaceObj={InterfaceObj}/>
+
+                        {modalEmpty ? (
+                            <div className='ModalEmpty_HeaderBlock'>
+                                <ModalEmptyForm InterfaceObj={InterfaceObjModal} />
+                            </div>
+                        ) : (
+                            <></>
+                        )}
+
+                        {modalSuccess ? (
+                            <div className='ModalSuccess_headerBlock'>
+                                <ModalSucces InterfaceObj={InterfaceObjModal} />
+                            </div>
+                        ) : (
+                            <></>
+                        )}
                         
                         <Button onClick={() => {
                             setNewTask()
-                            window.location.reload()
+                            // window.location.reload()
                         }} className='mb-5 mt-3 ps-5 pe-5' variant="outline-dark">Создать</Button>      
                     </Form>
 
