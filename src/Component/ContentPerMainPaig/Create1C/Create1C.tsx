@@ -325,6 +325,12 @@ const Create1C:FC= () => {
                         <option value="Незначительные проблемы">Незначительные проблемы</option>
                         <option value="Нет непосредственной угрозы функциональности">Нет непосредственной угрозы функциональности</option>
                     </>
+                )
+            default:
+                return (
+                    <>
+
+                    </>
                 )    
         }
     }
@@ -332,9 +338,6 @@ const Create1C:FC= () => {
     async function setNewTask() {
         if (
             !taskService.trim()        ||
-            !userName.trim()           ||
-            !userEmail.trim()          ||
-            !taskOrganization.trim()   ||
             !taskName.trim()           ||            
             !taskComment.trim()
         ) {
@@ -410,21 +413,19 @@ const Create1C:FC= () => {
 
         setTaskService("")
 
-        handleSetTaskComment("")
-        handleSetTaskInfluence("")
-        handleSetTaskInfluenceDescr("")
-        handleSetTaskName("")
-        handleSetTaskOrganization("")
-        handleSetTaskUrgency("")
-        handleSetTaskUrgencyDescr("")
-        handleSetUserEmail("")
-        handleSetUserName("")
+        setTaskComment("")
+        setTaskInfluence("")
+        setTaskInfluenceDescr("")
+        setTaskName("")
+        setTaskUrgency("")
+        setTaskUrgencyDescr("")
+        setTaskPodInfluence("")
 
-        handleSetUserNameCreate1c("")
-        handleSetUserCompanyCreate1c("")
-        handleSetUserEmailCreate1c("")
-        handleSetUserJobtitelCreate1c("")
-        handleSetUserJobArrow("")
+        setUserNameCreate1c("")
+        setUserCompanyCreate1c("")
+        setUserEmailCreate1c("")
+        setUserJobtitelCreate1c("")
+        setUserJobArrowCreate1c("")        
     }
 
     if (store.isLoading) {
