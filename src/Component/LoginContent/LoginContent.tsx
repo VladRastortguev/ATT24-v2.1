@@ -190,7 +190,7 @@ const LoginContent:FC = () => {
                     <div className='VR_loginCheckBox'>
                         <ul>
                             <li><a className={`VR_LoginLink ${singIn ? 'VR_singInActive' : 'VR_singUpActive'} `} onClick={() => setSingIn(true)}>Вход</a></li>
-                            <li><a className={`VR_LoginLink ${singIn ? 'VR_singUpActive' : 'VR_singInActive'} `} onClick={() => setSingIn(false)}>Регистрация</a></li>
+                            {/* <li><a className={`VR_LoginLink ${singIn ? 'VR_singUpActive' : 'VR_singInActive'} `} onClick={() => setSingIn(false)}>Регистрация</a></li> */}
                         </ul>
                     </div>
 
