@@ -6,6 +6,7 @@ import { itilUser } from "../models/itil/itilUser";
 import { itilCompany } from "../models/itil/itilCompany";
 import { commentModel } from "../models/itil/itilCommentModel";
 import { OneTaskInterface } from "../models/itil/itilOneTaskInterface";
+import { itilEmail } from "../models/itil/itilAllEmailModels";
 
 export default class UserService {
     static fetchUsers(): Promise<AxiosResponse<IUser[]>> {
@@ -30,5 +31,9 @@ export default class UserService {
 
     static async getAllTask(email:string): Promise<AxiosResponse<OneTaskInterface[]>> {
         return $api.get<OneTaskInterface[]>(`/getalltask/${email}`)
+    }
+
+    static async getAllEmail(email:string): Promise<AxiosResponse<itilEmail[]>> {
+        return $api.get<itilEmail[]>(`/getallemail/${email}`)
     }
 }

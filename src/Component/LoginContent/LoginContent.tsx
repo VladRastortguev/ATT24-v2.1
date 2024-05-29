@@ -82,25 +82,41 @@ const LoginContent:FC = () => {
     }
 
     async function checkNormalizeReg() {
-        let validationRegIndex = await validationPasswordLenght()
-        
-        if (validationRegIndex == 1) {
-            const res = await store.registration(emailReg, passwordReg)
+        store.setLoading(true)
 
-            if (String(res) == '200') { 
-                localStorage.setItem('userEmail', emailReg)
-                
-                await setLocalUsername(emailReg)
-                await setLocalCompany()
+        try {
+            const emailRes = await UserService.getAllEmail(emailReg)
 
-                navigate('/')
+            console.log(emailRes.data);            
+
+            if (!emailRes.data[0]) {
+                alert('К сожалению, вы не зарегистрированны в нашей внутренней системе. \n Обратитесь по номеру +996553030911 и мы обязательно поможем Вам с этим вопросом! \n Обращайтесь пожалуйста в WhatsApp или напишите на почту vrastorguev@altyntulpar.kg')
             } else {
-                alert('Неправильный логин или пароль!')
+                let validationRegIndex = await validationPasswordLenght()
+            
+                if (validationRegIndex == 1) {
+                    const res = await store.registration(emailReg, passwordReg)
+    
+                    if (String(res) == '200') { 
+                        localStorage.setItem('userEmail', emailReg)
+                    
+                        await setLocalUsername(emailReg)
+                        await setLocalCompany()
+    
+                        navigate('/')
+                    } else {
+                        alert('Неправильный логин или пароль!')
+                    }
+                } else if (validationRegIndex == 2) {
+                    setPasswordReg('')
+                    return
+                }                  
             }
-        } else if (validationRegIndex == 2) {
-            setPasswordReg('')
-            return
-        }        
+        } catch (e) {
+            alert(e)
+        } finally {
+            store.setLoading(false)
+        }              
     }
     
     const customTheme = (outerTheme: Theme) => createTheme({
@@ -190,7 +206,7 @@ const LoginContent:FC = () => {
                     <div className='VR_loginCheckBox'>
                         <ul>
                             <li><a className={`VR_LoginLink ${singIn ? 'VR_singInActive' : 'VR_singUpActive'} `} onClick={() => setSingIn(true)}>Вход</a></li>
-                            {/* <li><a className={`VR_LoginLink ${singIn ? 'VR_singUpActive' : 'VR_singInActive'} `} onClick={() => setSingIn(false)}>Регистрация</a></li> */}
+                            <li><a className={`VR_LoginLink ${singIn ? 'VR_singUpActive' : 'VR_singInActive'} `} onClick={() => setSingIn(false)}>Регистрация</a></li>
                         </ul>
                     </div>
 
