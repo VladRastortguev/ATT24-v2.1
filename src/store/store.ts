@@ -4,12 +4,15 @@ import AuthService from "../services/AuthService";
 import axios from "axios";
 import { AuthResponce } from "../models/response/AuthResponse";
 import { API_TASKS, API_URL } from "../http";
+import { itilEmail } from "../models/itil/itilAllEmailModels";
+import UserService from "../services/UserService";
 // import { TaskItemResponse } from "../models/response/TaskItemResponse";
 
 export default class Store {
     user = {} as IUser;
     isAuth = false;
     isLoading = false;
+    aa6Success = false;
     
     constructor() {
         makeAutoObservable(this);
@@ -25,6 +28,10 @@ export default class Store {
 
     setLoading(bool: boolean) {
         this.isLoading = bool;
+    }
+
+    setAa6Success(bool: boolean) {
+        this.aa6Success = bool
     }
 
     async login(email: string, password: string) {
@@ -79,7 +86,7 @@ export default class Store {
         this.setLoading(true);
         try {
             const response = await axios.get<AuthResponce>(`${API_URL}/refresh`, {withCredentials: true})
-            console.log(response);
+            // console.log(response);
             localStorage.setItem('token', response.data.accesToken);
             localStorage.setItem('admin', String(this.user.admin))
             this.setAuth(true);
@@ -88,6 +95,25 @@ export default class Store {
             console.log(e);
         } finally {
             this.setLoading(false);
+        }
+    }
+
+    async checkAa6Success(email: string) {
+        this.setLoading(true)
+
+        try {
+            const response = await UserService.getAA6Users(email)
+
+            console.log(response);            
+
+            if (response.data[0]) {
+                this.setAa6Success(true)
+                // console.log(true);                
+            } 
+        } catch (e) {
+            console.log(e);            
+        } finally {
+            this.setLoading(false)
         }
     }
 }

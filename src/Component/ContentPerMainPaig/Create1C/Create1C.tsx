@@ -22,6 +22,7 @@ import UserJobtitelCreate1c from '../PodComponent/CreateAccount1c/UserJobtitelCr
 import UserArrowJod from '../PodComponent/CreateAccount1c/UserArrowJod'
 import ModalEmptyForm from '../../AlertModal/ModalEmptyForm/ModalEmptyForm'
 import ModalSucces from '../../AlertModal/ModalSuccess/ModalSucces'
+import { log } from 'console'
 
 const Create1C:FC= () => {
     const [taskService, setTaskService] = useState('')
@@ -48,6 +49,8 @@ const Create1C:FC= () => {
     const [modalEmpty, setModalEmpty] = useState(false)
     const [modalSuccess, setModalSuccess] = useState(false)
 
+    const [aa6SuccessIndex, setAa6SuccessIndex] = useState(0)
+
     const { store } = useContext(Context)
 
     useEffect(() => {
@@ -57,6 +60,22 @@ const Create1C:FC= () => {
                 await store.checkAuth()
             } catch (e) {
                 alert(e)
+            } finally {
+                store.setLoading(false)
+            }
+        }
+
+        fetchData()
+    }, [])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            store.setLoading(true)
+
+            try {
+                await store.checkAa6Success(String(localStorage.getItem('userEmail')))    
+            } catch (e) {
+                console.log(e);                
             } finally {
                 store.setLoading(false)
             }
@@ -77,6 +96,8 @@ const Create1C:FC= () => {
         }
     }, [store.isAuth])
 
+   
+    console.log(store.aa6Success);    
     
     const handleSetTaskName = (newState: string) => {
         setTaskName(newState)
@@ -389,7 +410,7 @@ const Create1C:FC= () => {
         ]
 
         if (taskService == 'Создание учетной записи АА6') {
-            taskObj[0].ВлияниеЗадачи = "Среднее"
+            taskObj[0].ВлияниеЗадачи = "Средний"
             taskObj[0].ВлияниеЗадачиПодробно = "Влияние задачи подробно: Создание новой учетки"
             taskObj[0].Срочность = "Средняя"
             taskObj[0].СрочностьПодробно = "Срочность задачи подробно: Создание новой учетки"
@@ -454,7 +475,13 @@ const Create1C:FC= () => {
                                 <option></option>
                                 <option value="Доработка 1С">Доработка 1С</option>
                                 <option value="Разработка 1С">Разработка 1С</option>
-                                <option value="Создание учетной записи АА6">Создание учетной записи АА6</option>
+
+                                {store.aa6Success ? (
+                                    <option value="Создание учетной записи АА6">Создание учетной записи АА6</option>
+                                ) : (
+                                    <>                                    
+                                    </>
+                                )}
                             </Form.Select>
                         </Form.Group>     
 
