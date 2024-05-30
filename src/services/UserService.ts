@@ -36,4 +36,8 @@ export default class UserService {
     static async getAllEmail(email:string): Promise<AxiosResponse<itilEmail[]>> {
         return $api.get<itilEmail[]>(`/getallemail/${email}`)
     }
+
+    static async getAA6Users(email:string): Promise<AxiosResponse<itilEmail[]>> {
+        return $api.get<itilEmail[]>(`/getaa6/${email}`)
+    }
 }
