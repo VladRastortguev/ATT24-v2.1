@@ -58,12 +58,12 @@ const DataloreContent:FC = () => {
         <>
             <Container>
                 <div className='VR_Accordion_Content_Header mt-5'>
-                    <Accordion defaultActiveKey="0">
+                    <Accordion>
                         <Accordion.Item eventKey='0'>
                             <Accordion.Header className='VR_All_Header_Accordion'>Альфа-6</Accordion.Header>
                             <Accordion.Body>
 
-                                <Accordion defaultActiveKey="1">
+                                <Accordion>
                                     <Accordion.Item eventKey='0'>
                                         <Accordion.Header className='VR_Datalore_Header VR_Accordion_Item'>Администрирование РЛС</Accordion.Header>
                                         <Accordion.Body className='VR_Datalore_ButtonGroup'>

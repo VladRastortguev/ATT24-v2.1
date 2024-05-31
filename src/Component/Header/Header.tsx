@@ -43,6 +43,10 @@ const Header:FC<HeaderInterface> = ({InterfaceObj}) => {
                 return (
                     <BackBtn />
                 )
+            case 'MyTask':
+                return (
+                    <BackBtn />
+                )
         }
     }
 
@@ -53,8 +57,7 @@ const Header:FC<HeaderInterface> = ({InterfaceObj}) => {
                     <>
                         <Nav className="me-auto">
                             <Nav.Link onClick={() => navigate('/datalore')}>База знаний</Nav.Link>
-                            {/* <Nav.Link href="#features">Features</Nav.Link>
-                            <Nav.Link href="#pricing"></Nav.Link> */}
+                            <Nav.Link onClick={() => navigate('/mytask')}>Мои задачи</Nav.Link>
                         </Nav>
                     </>
                 )
