@@ -29,6 +29,7 @@ const CreateTex:FC = () => {
     const [taskUrgency, setTaskUrgency] = useState('')
     const [taskUrgencyDescr, setTaskUrgencyDescr] = useState('')
     const [taskComment, setTaskComment] = useState('')
+    const [taskPodInfluence, setTaskPodInfluence] = useState('')
 
     const [modalEmpty, setModalEmpty] = useState(false)
     const [modalSuccess, setModalSuccess] = useState(false)
@@ -106,6 +107,10 @@ const CreateTex:FC = () => {
         setModalSuccess(newState)
     }
 
+    const handleSetTaskPodInfluence = (newState: string) => {
+        setTaskPodInfluence(newState)
+    }
+
     const InterfaceObj = {
       changeTaskName: handleSetTaskName,
       changeUserName: handleSetUserName,
@@ -116,6 +121,7 @@ const CreateTex:FC = () => {
       changeTaskUrgency: handleSetTaskUrgency,
       changeTaskUrgencyDescr: handleSetTaskUrgencyDescr,
       changeTaskComment: handleSetTaskComment,
+      changeTaskPodInfluence: handleSetTaskPodInfluence,
       taskName: taskName,
       userName: userName,
       userEmail: userEmail,
@@ -124,7 +130,8 @@ const CreateTex:FC = () => {
       taskInfluenceDescr: taskInfluenceDescr,
       taskUrgency: taskUrgency,
       taskUrgencyDescr: taskUrgencyDescr,
-      taskComment: taskComment
+      taskComment: taskComment,
+      taskPodInfluence: taskPodInfluence
   }
 
     const InterfaceObjModal = {
@@ -262,7 +269,53 @@ const CreateTex:FC = () => {
               )
       }
           
-  }
+    }
+
+    function checkInfluence(taskInfluence: string) {
+        switch (taskInfluence) {
+            case 'Критический':
+                return (
+                    <>
+                        <option value=""></option>
+                        <option value="Полная потеря функциональности продукта">Полная потеря функциональности продукта</option>
+                        <option value="Проблема затрагивает большое количество пользователей">Проблема затрагивает большое количество пользователей</option>
+                        <option value="Проблема не влияет на работу большого количества пользователей">Проблема не влияет на работу большого количества пользователей</option>
+                    </>
+                )
+            case 'Высокий':
+                return (
+                    <>
+                        <option value=""></option>
+                        <option value="Значительное снижение функциональности">Значительное снижение функциональности</option>
+                        <option value="Проблема затрагивает ограниченное количество пользователей">Проблема затрагивает ограниченное количество пользователей</option>
+                        <option value="Проблема не влияет на работу большого количества пользователей">Проблема не влияет на работу большого количества пользователей</option>
+                    </>
+                )
+            case 'Средний':
+                return (
+                    <>
+                        <option value=""></option>
+                        <option value="Частичное снижение функциональности">Частичное снижение функциональности</option>
+                        <option value="Проблема имеет временное решение">Проблема имеет временное решение</option>
+                        <option value="Проблема не имеет временного решения">Проблема не имеет временного решения</option>                        
+                    </>
+                )
+            case 'Низкий':
+                return (
+                    <>
+                        <option value=""></option>
+                        <option value="Незначительные проблемы">Незначительные проблемы</option>
+                        <option value="Нет непосредственной угрозы функциональности">Нет непосредственной угрозы функциональности</option>
+                    </>
+                )
+            default:
+                return (
+                    <>
+                        <option value=""></option>
+                    </>
+                )
+        }
+    }
 
     if (store.isLoading) {
         return (
@@ -322,7 +375,55 @@ const CreateTex:FC = () => {
                                 <TaskOrganization InterfaceObj={InterfaceObj} />
                             </>
                         )}
-                        <TaskInfluence InterfaceObj={InterfaceObj} />   
+
+                        <div className='VR_taskType_FlexLine'>
+
+                            <div className='VR_taskType_type'>
+                                <Form.Group className="mb-3" controlId="ControlSelect2">
+                                    <Form.Label>Приоритет Вашей задачи:</Form.Label>                
+                                    <Form.Select
+                                        className='VR_TaskName' 
+                                        aria-label="Влияние вашей задачи:"
+                                        value={taskInfluence}
+                                        onChange={(e) => handleSetTaskInfluence(e.target.value)}>
+            
+                                        <option></option>
+                                        <option value='Низкий'>Низкий</option>
+                                        <option value='Средний'>Средний</option>
+                                        <option value='Высокий'>Высокий</option>
+                                        <option value='Критический'>Критический</option>
+                                    </Form.Select>            
+                                </Form.Group> 
+                            </div>
+
+                            <div className='VR_taskType_service'>
+                                <Form.Group>
+                                    <Form.Label>Пояснение приоритета:</Form.Label>
+                                    <Form.Select
+                                        // className='VR_TaskName'
+                                        aria-label='Пояснение приоритета:'
+                                        value={taskPodInfluence}
+                                        onChange={(e) => setTaskPodInfluence(e.target.value)}>
+
+                                        {checkInfluence(taskInfluence)}
+
+                                    </Form.Select>
+                                </Form.Group>  
+                            </div>
+
+                        </div>
+
+                        <Form.Group className="mb-3" controlId="ControlTextarea1">
+                            <Form.Label>Опишите влияние вашей задачи:</Form.Label>
+                            <Form.Control 
+                                className='VR_TaskName' 
+                                as="textarea" 
+                                rows={3}
+                                value={taskInfluenceDescr} 
+                                onChange={(e) => handleSetTaskInfluenceDescr(e.target.value)}/>
+                        </Form.Group>
+
+                        {/* <TaskInfluence InterfaceObj={InterfaceObj} />    */}
                         <TaskUrgency InterfaceObj={InterfaceObj} />
                         <TaskComment InterfaceObj={InterfaceObj}/>
                     

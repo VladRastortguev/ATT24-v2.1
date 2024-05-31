@@ -9,6 +9,7 @@ export interface TaskInterface {
         changeTaskUrgency: ((newState: string) => void) | null
         changeTaskUrgencyDescr: ((newState: string) => void) | null
         changeTaskComment: ((newState: string) => void) | null
+        changeTaskPodInfluence: ((newState: string) => void) | null
         taskName: string
         userName: string
         userEmail: string
@@ -18,5 +19,6 @@ export interface TaskInterface {
         taskUrgency: string
         taskUrgencyDescr: string
         taskComment: string
+        taskPodInfluence: string
     }
 }

@@ -34,6 +34,7 @@ const CreateAnonym:FC = () => {
         changeTaskUrgency: null,
         changeTaskUrgencyDescr: null,
         changeTaskComment: handleSetTaskComment,
+        changeTaskPodInfluence: null,
         taskName: taskName,
         userName: "",
         userEmail: "",
@@ -42,7 +43,8 @@ const CreateAnonym:FC = () => {
         taskInfluenceDescr: "",
         taskUrgency: "",
         taskUrgencyDescr: "",
-        taskComment: taskComment
+        taskComment: taskComment,
+        taskPodInfluence: ""
     }
 
     async function setNewTask() {
