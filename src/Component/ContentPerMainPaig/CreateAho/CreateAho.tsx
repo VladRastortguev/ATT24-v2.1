@@ -23,6 +23,7 @@ const CreateAho:FC = () => {
     const [taskUrgency, setTaskUrgency] = useState('')
     const [taskUrgencyDescr, setTaskUrgencyDescr] = useState('')
     const [taskComment, setTaskComment] = useState('')
+    const [taskPodInfleunce, setTaskPodInfluence] = useState('')
 
     const { store } = useContext(Context)
 
@@ -89,6 +90,10 @@ const CreateAho:FC = () => {
         setTaskComment(newState)
     }
 
+    const handleSetTaskPodInfluence = (newState: string) => {
+        setTaskPodInfluence(newState)
+    }
+
     const InterfaceObj = {
       changeTaskName: handleSetTaskName,
       changeUserName: handleSetUserName,
@@ -99,6 +104,7 @@ const CreateAho:FC = () => {
       changeTaskUrgency: handleSetTaskUrgency,
       changeTaskUrgencyDescr: handleSetTaskUrgencyDescr,
       changeTaskComment: handleSetTaskComment,
+      changeTaskPodInfluence: handleSetTaskPodInfluence,
       taskName: taskName,
       userName: userName,
       userEmail: userEmail,
@@ -107,7 +113,8 @@ const CreateAho:FC = () => {
       taskInfluenceDescr: taskInfluenceDescr,
       taskUrgency: taskUrgency,
       taskUrgencyDescr: taskUrgencyDescr,
-      taskComment: taskComment
+      taskComment: taskComment,
+      taskPodInfluence: taskPodInfleunce
     }
 
   async function setNewTask() {

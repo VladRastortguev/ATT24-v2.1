@@ -23,6 +23,7 @@ import UserArrowJod from '../PodComponent/CreateAccount1c/UserArrowJod'
 import ModalEmptyForm from '../../AlertModal/ModalEmptyForm/ModalEmptyForm'
 import ModalSucces from '../../AlertModal/ModalSuccess/ModalSucces'
 import { log } from 'console'
+import TaskPodInfluence from '../PodComponent/TaskPodInfluence'
 
 const Create1C:FC= () => {
     const [taskService, setTaskService] = useState('')
@@ -180,6 +181,7 @@ const Create1C:FC= () => {
         changeTaskUrgency: handleSetTaskUrgency,
         changeTaskUrgencyDescr: handleSetTaskUrgencyDescr,
         changeTaskComment: handleSetTaskComment,
+        changeTaskPodInfluence: handleSetPodTaskInfluence,
         taskName: taskName,
         userName: userName,
         userEmail: userEmail,
@@ -188,7 +190,8 @@ const Create1C:FC= () => {
         taskInfluenceDescr: taskInfluenceDescr,
         taskUrgency: taskUrgency,
         taskUrgencyDescr: taskUrgencyDescr,
-        taskComment: taskComment
+        taskComment: taskComment,
+        taskPodInfluence: taskPodInfluence
     }
 
     const InterfaceObjCreate1c = {
@@ -310,51 +313,51 @@ const Create1C:FC= () => {
         }
     }
 
-    function changeInfluenceContent(taskInfluence:string) {
-        switch (taskInfluence) {
-            case 'Критический':
-                return (
-                    <>
-                        <option value=""></option>
-                        <option value="Полная потеря функциональности продукта">Полная потеря функциональности продукта</option>
-                        <option value="Проблема затрагивает большое количество пользователей">Проблема затрагивает большое количество пользователей</option>
-                        <option value="Проблема не влияет на работу большого количества пользователей">Проблема не влияет на работу большого количества пользователей</option>
-                    </>
-                )
-            case 'Высокий':
-                return (
-                    <>
-                        <option value=""></option>
-                        <option value="Значительное снижение функциональности">Значительное снижение функциональности</option>
-                        <option value="Проблема затрагивает ограниченное количество пользователей">Проблема затрагивает ограниченное количество пользователей</option>
-                        <option value="Проблема не влияет на работу большого количества пользователей">Проблема не влияет на работу большого количества пользователей</option>
-                    </>
-                )
-            case 'Средний':
-                return (
-                    <>
-                        <option value=""></option>
-                        <option value="Частичное снижение функциональности">Частичное снижение функциональности</option>
-                        <option value="Проблема имеет временное решение">Проблема имеет временное решение</option>
-                        <option value="Проблема не имеет временного решения">Проблема не имеет временного решения</option>
-                    </>
-                )
-            case 'Низкий':
-                return (
-                    <>
-                        <option value=""></option>
-                        <option value="Незначительные проблемы">Незначительные проблемы</option>
-                        <option value="Нет непосредственной угрозы функциональности">Нет непосредственной угрозы функциональности</option>
-                    </>
-                )
-            default:
-                return (
-                    <>
+    // function changeInfluenceContent(taskInfluence:string) {
+    //     switch (taskInfluence) {
+    //         case 'Критический':
+    //             return (
+    //                 <>
+    //                     <option value=""></option>
+    //                     <option value="Полная потеря функциональности продукта">Полная потеря функциональности продукта</option>
+    //                     <option value="Проблема затрагивает большое количество пользователей">Проблема затрагивает большое количество пользователей</option>
+    //                     <option value="Проблема не влияет на работу большого количества пользователей">Проблема не влияет на работу большого количества пользователей</option>
+    //                 </>
+    //             )
+    //         case 'Высокий':
+    //             return (
+    //                 <>
+    //                     <option value=""></option>
+    //                     <option value="Значительное снижение функциональности">Значительное снижение функциональности</option>
+    //                     <option value="Проблема затрагивает ограниченное количество пользователей">Проблема затрагивает ограниченное количество пользователей</option>
+    //                     <option value="Проблема не влияет на работу большого количества пользователей">Проблема не влияет на работу большого количества пользователей</option>
+    //                 </>
+    //             )
+    //         case 'Средний':
+    //             return (
+    //                 <>
+    //                     <option value=""></option>
+    //                     <option value="Частичное снижение функциональности">Частичное снижение функциональности</option>
+    //                     <option value="Проблема имеет временное решение">Проблема имеет временное решение</option>
+    //                     <option value="Проблема не имеет временного решения">Проблема не имеет временного решения</option>
+    //                 </>
+    //             )
+    //         case 'Низкий':
+    //             return (
+    //                 <>
+    //                     <option value=""></option>
+    //                     <option value="Незначительные проблемы">Незначительные проблемы</option>
+    //                     <option value="Нет непосредственной угрозы функциональности">Нет непосредственной угрозы функциональности</option>
+    //                 </>
+    //             )
+    //         default:
+    //             return (
+    //                 <>
 
-                    </>
-                )    
-        }
-    }
+    //                 </>
+    //             )    
+    //     }
+    // }
 
     async function setNewTask() {
         if (
@@ -378,7 +381,7 @@ const Create1C:FC= () => {
                 return
             } 
         } else if (
-            !taskInfluence.trim()      ||
+            // !taskInfluence.trim()      ||
             !taskInfluenceDescr.trim() ||
             !taskUrgency.trim()        ||
             !taskUrgencyDescr.trim()
@@ -395,7 +398,8 @@ const Create1C:FC= () => {
                 ИмяПользователя       : userName,
                 email                 : userEmail,
                 КомпанияЗаказчик      : taskOrganization,
-                ВлияниеЗадачи         : taskInfluence,
+                ВлияниеЗадачи         : "Средний",
+                ВлияниеЗадачиПояснение: taskPodInfluence,
                 ВлияниеЗадачиПодробно : `Влияние задачи подробно: ${taskInfluenceDescr}. Обоснование влияния из выбора: ${taskPodInfluence}`,
                 Срочность             : taskUrgency,
                 СрочностьПодробно     : `Срочность задачи подробно: ${taskUrgencyDescr}`,
@@ -504,7 +508,7 @@ const Create1C:FC= () => {
                                 {/* <TaskInfluence InterfaceObj={InterfaceObj} />   
                                 <TaskUrgency InterfaceObj={InterfaceObj} />                             */}
 
-                                <div className='VR_taskType_FlexLine'>
+                                {/* <div className='VR_taskType_FlexLine'>
                                     <div className='VR_taskType_type'>
                                         <Form.Group className="mb-3" controlId="ControlSelect2">
                                             <Form.Label>Приоритет Вашей задачи:</Form.Label>                
@@ -537,6 +541,10 @@ const Create1C:FC= () => {
                                             </Form.Select>
                                         </Form.Group>                                
                                     </div>
+                                </div> */}
+
+                                <div className='VR_taskType_servcie'>
+                                    <TaskPodInfluence InterfaceObj={InterfaceObj} />    
                                 </div>
 
                                 <Form.Group className="mb-3" controlId="ControlTextarea1">
@@ -596,10 +604,12 @@ const Create1C:FC= () => {
                             <></>
                         )}
                         
-                        <Button onClick={() => {
-                            setNewTask()
-                            // window.location.reload()
-                        }} className='mb-5 mt-3 ps-5 pe-5' variant="outline-dark">Создать</Button>      
+                        <div className='VR_FlexBtnCreate'>
+                            <Button onClick={() => {
+                                setNewTask()
+                                // window.location.reload()
+                            }} className='mb-5 mt-3 ps-5 pe-5 f-end' variant="outline-dark">Создать</Button>     
+                        </div>     
                     </Form>
 
             </Container> 

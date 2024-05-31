@@ -7,7 +7,7 @@ const TaskComment:FC<TaskInterface> = ({InterfaceObj}) => {
   return (
     <>
         <Form.Group className="mb-3" controlId="ControlTextarea1">
-            <Form.Label>Комментарий:</Form.Label>
+            <Form.Label>Детальное описание задачи:</Form.Label>
             <Form.Control 
                 className='VR_TaskName' 
                 as="textarea" 
