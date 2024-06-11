@@ -144,9 +144,6 @@ const CreateTex:FC = () => {
     if (
         !taskService.trim()        ||
         !taskName.trim()           ||
-        !userName.trim()           ||
-        !userEmail.trim()          ||
-        !taskOrganization.trim()   ||
         !taskInfluence.trim()      ||
         !taskInfluenceDescr.trim() ||
         !taskUrgency.trim()        ||
@@ -444,8 +441,7 @@ const CreateTex:FC = () => {
                         )}
 
                     <Button onClick={() => {
-                        setNewTask()
-                        window.location.reload()                
+                        setNewTask()               
                     }} className='mb-5 mt-3 ps-5 pe-5' variant="outline-dark">Создать</Button>      
                 </Form>
             </Container>
