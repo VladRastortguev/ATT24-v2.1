@@ -256,6 +256,7 @@ const CreateTex:FC = () => {
                         <option value="Сбой в работе электронной почты">Сбой в работе электронной почты</option>
                         <option value="Сбой при подключении к 1С">Сбой при подключении к 1С</option>                
                         <option value="Сбой в работе wifi">Сбой в работе wifi</option>
+                        <option value="Сбой в работе компьютера">Сбой в работе компьютера</option>
                     </>
                 )
           default:
